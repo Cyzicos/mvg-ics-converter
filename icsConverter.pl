@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-open CSVINPUT,"/Users/hannesvietz/Documents/PerlLernen/Projekttest/kalenderRED.csv";
+open CSVINPUT,"/Users/hannesvietz/Documents/PerlLernen/Projekttest/kalenderREDzeitraum.csv";
 @zeilenListe=<CSVINPUT>;
 close CSVINPUT;
 
@@ -15,8 +15,15 @@ foreach $zeilenListe(@zeilenListe){
 
 print $write "\nBEGIN:VEVENT\nDTEND;TZID=Europe/Berlin:";
 @s=split /;/, $zeilenListe;
-$timecode=&timeConverter($s[0]);
-print $write $timecode;
+$_=$s[0];
+if (/-/) {
+ $endtimecode=&endtimeConverter($s[0]);
+
+	}
+else{
+ $endtimecode=&timeConverter($s[0]);
+	}
+print $write $endtimecode;
 print $write "010000\n";
 
 print $write "SUMMARY:";
@@ -47,9 +54,22 @@ $location;
 }
 
 sub timeConverter{
+
 my $day=substr($_[0],0,2);
 my $month=substr($_[0],3,2);
 my $year=substr($_[0],6,4);
 #print "Day: $day Month: $month Year $year\n";
 $timecode=$year.$month.$day."T";
+}
+sub endtimeConverter{
+
+my $endday=substr($_[0],4,2);
+my $day=substr($_[0],0,2);
+my $month=substr($_[0],7,2);
+my $year=substr($_[0],10,4);
+
+#print "Day: $day Month: $month Year $year\n";
+$timecode=$year.$month.$day."T";
+$endtimecode=$year.$month.$endday."T";
+
 }
