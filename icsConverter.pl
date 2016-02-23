@@ -1,11 +1,13 @@
 #!/usr/bin/perl
-open CSVINPUT,"/Users/hannesvietz/Documents/PerlLernen/Projekttest/kalenderREDzeitraum.csv";
-@zeilenListe=<CSVINPUT>;
-close CSVINPUT;
 
+@zeilenListe=<>;
+use Cwd;
 $headerString="BEGIN:VCALENDAR\nMETHOD:PUBLISH\nVERSION:2.0\nX-WR-CALNAME:MVG-Termine\nPRODID:-//Hannes\nX-APPLE-CALENDAR-COLOR:#63DA38\nX-WR-TIMEZONE:Europe/Berlin\nCALSCALE:GREGORIAN\n";
 
-open(my $write, '>', '/Users/hannesvietz/Documents/PerlLernen/Projekttest/output.ics');
+my $pwd = cwd();
+print $pwd."\n";
+open(my $write, '>', $pwd."/output.ics");
+
 
 print $write $headerString;
 
