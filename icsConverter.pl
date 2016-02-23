@@ -5,7 +5,7 @@ close CSVINPUT;
 
 $headerString="BEGIN:VCALENDAR\nMETHOD:PUBLISH\nVERSION:2.0\nX-WR-CALNAME:MVG-Termine\nPRODID:-//Hannes\nX-APPLE-CALENDAR-COLOR:#63DA38\nX-WR-TIMEZONE:Europe/Berlin\nCALSCALE:GREGORIAN\n";
 
-open(my $write, '>', '/Users/hannesvietz/Documents/PerlLernen/Projekttest/output.txt ');
+open(my $write, '>', '/Users/hannesvietz/Documents/PerlLernen/Projekttest/output.ics');
 
 print $write $headerString;
 
@@ -36,7 +36,7 @@ print $write "\nEND:VEVENT\n";
 
 #print $write "@s";
 }
-print $write "END:VCALENDER\n";
+print $write "\nEND:VCALENDAR";
 close $write;
 
 
