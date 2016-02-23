@@ -2,14 +2,13 @@
 open CSVINPUT,"/Users/hannesvietz/Documents/PerlLernen/Projekttest/kalenderRED.csv";
 @zeilenListe=<CSVINPUT>;
 close CSVINPUT;
-open ICSINPUT, "/Users/hannesvietz/Documents/PerlLernen/Projekttest/Test3.ics";
-@icsFile=<ICSINPUT>;
-close ICSINPUT;
+
+$headerString="BEGIN:VCALENDAR\nMETHOD:PUBLISH\nVERSION:2.0\nX-WR-CALNAME:MVG-Termine\nPRODID:-//Hannes\nX-APPLE-CALENDAR-COLOR:#63DA38\nX-WR-TIMEZONE:Europe/Berlin\nCALSCALE:GREGORIAN\n";
 
 open(my $write, '>', '/Users/hannesvietz/Documents/PerlLernen/Projekttest/output.txt ');
-for (my $i=0; $i<25;$i++){
-print $write $icsFile[$i];
-}
+
+print $write $headerString;
+
 
 
 foreach $zeilenListe(@zeilenListe){
